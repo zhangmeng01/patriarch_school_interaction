@@ -1,0 +1,317 @@
+/*外层最大的盒子*/
+.contentBox{
+    width: 100%;
+    padding: 20px 0 0 0px;
+    box-sizing: border-box;
+}
+/*搜索栏*/
+.contentBox .search-box{
+    width: 100%;
+}
+.contentBox .search-box span{
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-right: 10px;
+}
+.contentBox .search-box input{
+    width: 200px;
+    height: 39px;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    outline: none;
+    padding-left: 0.3%;
+    box-sizing: border-box;
+    margin-right: 50px;
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: 0;
+    margin-bottom: 27px;
+}
+.contentBox .search-box select{
+    width: 248px;
+    height: 39px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 0;
+    line-height: 14px;
+    outline: none;
+    margin-bottom: 27px;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+.contentBox .search-box select::-ms-expand{
+    display: none;
+}
+.contentBox .search-box select:nth-of-type(1){
+    margin-right: 50px;
+    background: #fff url("../images/icon_sanjiao.png") no-repeat 228px center;
+    background-size: 10px 5px;
+}
+.contentBox .search-box select:nth-of-type(2){
+    margin-right: 20px;
+    background: #fff url("../images/icon_sanjiao.png") no-repeat 228px center;
+    background-size: 10px 5px;
+}
+.contentBox .search-box button{
+    width: 80px;
+    height: 39px;
+    outline: none;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-right: 20px;
+    border-radius: 2px;
+    margin-bottom: 27px;
+}
+.contentBox .search-box button:nth-of-type(1){
+    background-color: #4D98E2;
+    color: #fff;
+    border: 1px solid #4D98E2;
+}
+.contentBox .search-box button:nth-of-type(2){
+    background-color: #ECF0F1;
+    color: #4D98E2;
+    border: 1px solid #ECF0F1;
+}
+.contentBox .search-box button:hover{
+    cursor: pointer;
+}
+/*班级*/
+.contentBox .classRoom{
+    width: 100%;
+    font-size: 18px;
+    color: #666666;
+    letter-spacing: 0;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.contentBox .classRoom span:nth-of-type(1){
+    float: left;
+}
+.contentBox .classRoom span:nth-of-type(2){
+    float: right;
+    width: 88px;
+    height: 39px;
+    text-align: center;
+    line-height: 39px;
+    background: #4D98E2;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    margin-right: 1.6%;
+}
+.contentBox .classRoom span:nth-of-type(2):hover{
+    cursor: pointer;
+}
+/*表格*/
+.tableBox{
+    width: 100%;
+    margin-bottom: 37px;
+}
+.tableBox .layui-table{
+    text-align: center;
+}
+.tableBox .layui-table thead{
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 16px;
+}
+.tableBox .layui-table thead tr{
+    background-color: #4D98E2;
+    height: 40px;
+}
+.tableBox .layui-table thead tr{
+    width: 25%;
+}
+.tableBox .layui-table tbody{
+    background: #F6FBFF;
+    font-size: 14px;
+    color: #999999;
+    line-height: 14px;
+}
+.tableBox .layui-table tbody tr{
+    height: 40px;
+}
+.tableBox .layui-table tbody tr:hover{
+    background: rgb(237,245,252);
+}
+.tableBox .layui-table tbody tr span{
+    font-size: 14px;
+    color: #4D98E2;
+    line-height: 14px;
+    text-decoration: underline;
+}
+.tableBox .layui-table tbody tr span:nth-of-type(1){
+    margin-right: 10px;
+}
+.tableBox .layui-table tbody tr span:hover{
+    cursor: pointer;
+}
+.layui-table td,
+.layui-table th,
+.layui-table-fixed-r,
+.layui-table-header,
+.layui-table-page,
+.layui-table-tips-main,
+.layui-table-tool,
+.layui-table-view,
+.layui-table[lay-skin=line],
+.layui-table[lay-skin=row]{
+    border-color: #fff!important;
+}
+/*暂无内容*/
+.contentBox .nothing-box{
+    width: 100%;
+    padding: 0 auto 0;
+    padding-bottom: 45px;
+    border-bottom: 1px solid #ECF0F1;
+    display: none;
+}
+.contentBox .nothing-box  p{
+    text-align: center;
+    font-size: 15px;
+    color: #606060;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+.contentBox .nothing-box p img{
+    width: 120px;
+    margin-bottom: 30px;
+}
+/*分页*/
+.pageContair{
+    width: 100%;
+    padding-right: 1.6%;
+    box-sizing: border-box;
+    text-align: right;
+}
+.pageContair .layui-laypage a,.pageContair .layui-laypage span{
+    background: #F6FBFF;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #4D98E2;
+    border: 1px solid #F6FBFF;
+}
+.pageContair .layui-laypage a {
+    margin-right: 7px!important;
+}
+.pageContair .layui-laypage a:last-child{
+    margin-right: 0!important;
+}
+.pageContair .layui-laypage a:hover,.pageContair .layui-laypage span:hover{
+    color: #4D98E2;
+}
+/*灰色遮罩层*/
+.gray_layersBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.30);
+    display: none;
+}
+/*删除的弹框*/
+.delete_layersBox{
+    position: absolute;
+    top: 40.6%;
+    left: 40.9%;
+    z-index: 10;
+    width: 350px;
+    height: 228px;
+    border-radius: 2px;
+    display: none;
+}
+.delete_layersBox .top-title{
+    width: 100%;
+    height: 49px;
+}
+.delete_layersBox .top-title p{
+    width: 100%;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    background-color: #4D98E2;
+}
+.delete_layersBox .top-title p span{
+    float: left;
+    margin-left: 159px;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+.delete_layersBox .top-title p img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    right: -51px;
+}
+.delete_layersBox .top-title p img:hover{
+    cursor: pointer;
+}
+.delete_layersBox .bottom-text{
+    width: 100%;
+    height: 179px;
+    background-color: #fff;
+}
+.delete_layersBox .bottom-text .imgTitle {
+    width: 100%;
+}
+.delete_layersBox .bottom-text .imgTitle img{
+    width: 50px;
+    margin: 30px 10px 30px 82px;
+}
+.delete_layersBox .bottom-text .imgTitle img:hover{
+    cursor: pointer;
+}
+.delete_layersBox .bottom-text .imgTitle span{
+    font-size: 14px;
+    color: #424754;
+    line-height: 14px;
+}
+.delete_layersBox .bottom-text .btnBack{
+    width: 100%;
+    text-align: center;
+}
+.delete_layersBox .bottom-text .btnBack button{
+    width: 80px;
+    height: 39px;
+    border:none;
+    outline: none;
+    font-size: 14px;
+    line-height: 14px;
+    border-radius: 2px;
+}
+.delete_layersBox .bottom-text .btnBack button:hover{
+    cursor: pointer;
+}
+.delete_layersBox .bottom-text .btnBack button:nth-of-type(1){
+    background-color: #4D98E2;
+    color: #fff;
+    border: 1px solid #4D98E2;
+    margin-right: 20px;
+}
+.delete_layersBox .bottom-text .btnBack button:nth-of-type(2){
+    background: #F8F8F8;
+    border: 1px solid #ECF0F1;
+    color: #4D98E2;
+}
+
+/*input获取焦点*/
+#result_values:focus {
+    border-color: #66afe9;
+    outline: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}
+

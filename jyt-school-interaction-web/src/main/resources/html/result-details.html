@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/react.css">
+    <link rel="stylesheet" href="./css/result-details.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+<div class="contentBox">
+    <!--班级-->
+    <div class="classRoom">
+        <span id="title_results">2018年第一学期期中考试</span>
+        <span id="btn_addResult">添加成绩</span>
+    </div>
+    <!--表格-->
+    <div class="tableBox">
+        <table class="layui-table" lay-skin="line" id="table_data">
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+                <tr id="table_head">
+
+                </tr>
+            </thead>
+            <tbody id="tbale_body">
+
+            </tbody>
+        </table>
+    </div>
+    <!--分页-->
+    <div class="pageContair">
+        <div id="test1"></div>
+    </div>
+    <div class="nothing-box">
+        <p><img src="./images/icon_nothing.png" alt=""></p>
+        <p>暂无内容</p>
+    </div>
+ </div>
+<!--灰色弹框-->
+<div class="gray_layersBox"></div>
+<!--添加成绩的弹框-->
+<div class="add_layersBox addition">
+    <!--上面的文字提示-->
+    <div class="top-title">
+        <p>
+            <span>添加成绩</span>
+            <img src="./images/icon_fanhui.png" alt="" id="btn_imgBack">
+        </p>
+    </div>
+    <!--下面的盒子-->
+    <div class="maxTextBox">
+         <!--下拉框-->
+        <div class="select-box change-boxs">
+            <span>学生姓名</span>
+            <select name="" id="students_selects">
+                <option value="">请选择学生</option>
+            </select>
+        </div>
+        <!--成绩-->
+        <ul class="tableHead">
+            <li>学科</li>
+            <li>分数</li>
+        </ul>
+        <div class="result-box">
+            <table class="layui-tables" lay-skin="nob">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <tbody id="students_addResult">
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers active"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--按钮栏-->
+        <div class="btn-save">
+            <button id="btn_saves">保存</button>
+        </div>
+    </div>
+</div>
+<!--编辑成绩的弹框-->
+<div class="add_layersBox compile">
+    <!--上面的文字提示-->
+    <div class="top-title">
+        <p>
+            <span>编辑成绩</span>
+            <img src="./images/icon_fanhui.png" alt="" id="btn_backImg">
+        </p>
+    </div>
+    <!--下面的盒子-->
+    <div class="maxTextBox">
+        <!--下拉框-->
+        <div class="select-box">
+            <span>学生姓名</span>
+            <span class="names" id="students_names">张振超</span>
+        </div>
+        <ul class="tableHead">
+            <li>学科</li>
+            <li>分数</li>
+        </ul>
+        <!--成绩-->
+        <div class="result-box">
+            <table class="layui-tables" lay-skin="nob">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <tbody id="edit_contents">
+                    <!--<tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>
+                    <tr>
+                        <td>学科1</td>
+                        <td><input type="text" class="result-numbers"></td>
+                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <!--按钮栏-->
+        <div class="btn-save">
+            <button id="btns_save">保存</button>
+        </div>
+    </div>
+</div>
+<!--删除弹框-->
+<div class="delete_layersBox">
+    <!--上面的文字提示-->
+    <div class="top-title">
+        <p>
+            <span>提示</span>
+            <img src="./images/icon_fanhui.png" alt="" class="btn_back">
+        </p>
+    </div>
+    <!--下面的文本-->
+    <div class="bottom-text">
+        <div class="imgTitle">
+            <img src="./images/icon_delete.png" alt="">
+            <span>确定删除当前选项？</span>
+        </div>
+        <div class="btnBack">
+            <button id="btn_sure">确认</button>
+            <button class="btn_back">取消</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./js/jquery-1.12.2.js"></script>
+<script src="./layui/layui.all.js"></script>
+<script src="./layui/layui.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/result-details.js"></script>
+<script>
+
+</script>
+</html>

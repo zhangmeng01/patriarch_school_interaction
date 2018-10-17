@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.yjtoon.school.mapper.IExamDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.yjtoon.school.domain.ExamDetail" >
+          <id column="ed_id" property="edId" jdbcType="BIGINT" />
+            <result column="ex_id" property="exId" jdbcType="BIGINT" />
+            <result column="us_id" property="usId" jdbcType="BIGINT" />
+            <result column="us_name" property="usName" jdbcType="VARCHAR" />
+            <result column="ed_achievement" property="edAchievement" jdbcType="VARCHAR" />
+            <result column="us_educationid" property="usEducationid" jdbcType="VARCHAR" />
+            <result column="us_code" property="usCode" jdbcType="VARCHAR" />
+            <result column="us_total_score" property="usTotalScore" jdbcType="DECIMAL" />
+            <result column="ed_is_delete" property="edIsDelete" jdbcType="CHAR" />
+            <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+            <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   
+  <sql id="baseColumns">
+         ed_id
+         ,ex_id
+         ,us_id
+         ,us_name
+         ,ed_achievement
+         ,us_educationid
+         ,us_code
+         ,us_total_score
+         ,ed_is_delete
+         ,create_time
+         ,update_time
+  </sql>
+  
+  <sql id="whereSql">
+        <if test="edId != null">
+         and ed_id=#{edId}
+		</if> 
+        <if test="exId != null">
+         and ex_id=#{exId}
+		</if> 
+        <if test="usId != null">
+         and us_id=#{usId}
+		</if> 
+        <if test="usName != null and usName!='' ">
+         and us_name=#{usName}
+		</if>
+        <if test="edAchievement != null and edAchievement!='' ">
+         and ed_achievement=#{edAchievement}
+		</if>
+        <if test="usEducationid != null and usEducationid!='' ">
+         and us_educationid=#{usEducationid}
+		</if>
+        <if test="usCode != null and usCode!='' ">
+         and us_code=#{usCode}
+		</if>
+        <if test="usTotalScore != null and usTotalScore!='' ">
+         and us_total_score=#{usTotalScore}
+		</if>
+        <if test="edIsDelete != null and edIsDelete!='' ">
+         and ed_is_delete=#{edIsDelete}
+		</if>
+        <if test="createTime != null">
+         and create_time=#{createTime}
+		</if> 
+        <if test="updateTime != null">
+         and update_time=#{updateTime}
+		</if> 
+  </sql>
+  
+  	<select id="getById" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/>
+		from exam_detail  where ed_id =#{edId}
+	</select>
+	
+	<select id="getByIds" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_detail  where ed_id in
+	     <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>  
+	</select>
+	
+	<select id="get" resultMap="BaseResultMap" parameterType="com.yjtoon.school.domain.ExamDetail">
+		select <include refid="baseColumns"/>
+		from exam_detail  where 1=1 <include refid="whereSql"/> limit 1
+	</select>
+	
+	<select id="findAllList" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_detail
+	</select>
+	
+	<select id="findList"  parameterType="com.yjtoon.school.domain.ExamDetail" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_detail where 1=1 <include refid="whereSql"/>
+	      <if test="orderBy != null and orderBy!='' ">
+                order by ${orderBy}  
+            </if>
+	</select>
+
+	
+	 <select id="getCount"  parameterType="com.yjtoon.school.domain.ExamDetail" resultType="java.lang.Integer">
+         select count(1) from exam_detail where 1=1 <include refid="whereSql"/>
+      </select>
+
+    <select id="findEntityWrapper"  parameterType="com.yjtoon.framework.sqlplus.EntityWrapper" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_detail where 1=1  ${ew.getSqlSegment()} 
+	</select>
+	
+      <insert id="insert" useGeneratedKeys="true" keyProperty="edId" parameterType="com.yjtoon.school.domain.ExamDetail">
+       insert into exam_detail 
+		<trim prefix="(" suffix=")" suffixOverrides=","> 
+		        <if test="edId != null">
+		          ed_id,
+				</if> 
+		        <if test="exId != null">
+		          ex_id,
+				</if> 
+		        <if test="usId != null">
+		          us_id,
+				</if> 
+		        <if test="usName != null and usName!='' ">
+		         us_name,
+				</if>
+		        <if test="edAchievement != null and edAchievement!='' ">
+		         ed_achievement,
+				</if>
+		        <if test="usEducationid != null and usEducationid!='' ">
+		         us_educationid,
+				</if>
+		        <if test="usCode != null and usCode!='' ">
+		         us_code,
+				</if>
+		        <if test="usTotalScore != null and usTotalScore!='' ">
+		         us_total_score,
+				</if>
+		        <if test="edIsDelete != null and edIsDelete!='' ">
+		         ed_is_delete,
+				</if>
+		        <if test="createTime != null">
+		          create_time,
+				</if> 
+		        <if test="updateTime != null">
+		          update_time,
+				</if> 
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		        <if test="edId != null">
+		         #{edId},
+				</if> 
+		        <if test="exId != null">
+		         #{exId},
+				</if> 
+		        <if test="usId != null">
+		         #{usId},
+				</if> 
+		        <if test="usName != null and usName!='' ">
+		        #{usName},
+				</if>
+		        <if test="edAchievement != null and edAchievement!='' ">
+		        #{edAchievement},
+				</if>
+		        <if test="usEducationid != null and usEducationid!='' ">
+		        #{usEducationid},
+				</if>
+		        <if test="usCode != null and usCode!='' ">
+		        #{usCode},
+				</if>
+		        <if test="usTotalScore != null and usTotalScore!='' ">
+		        #{usTotalScore},
+				</if>
+		        <if test="edIsDelete != null and edIsDelete!='' ">
+		        #{edIsDelete},
+				</if>
+		        <if test="createTime != null">
+		         #{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		         #{updateTime},
+				</if> 
+		</trim>
+    </insert>
+    
+    <update id="updateById" parameterType="com.yjtoon.school.domain.ExamDetail">
+	    update exam_detail  set
+	     <trim suffixOverrides="," >
+		        <if test="exId != null">
+		        ex_id=#{exId},
+				</if> 
+		        <if test="usId != null">
+		        us_id=#{usId},
+				</if> 
+		        <if test="usName != null and usName!='' ">
+		       us_name=#{usName},
+				</if>
+		        <if test="edAchievement != null and edAchievement!='' ">
+		       ed_achievement=#{edAchievement},
+				</if>
+		        <if test="usEducationid != null and usEducationid!='' ">
+		       us_educationid=#{usEducationid},
+				</if>
+		        <if test="usCode != null and usCode!='' ">
+		       us_code=#{usCode},
+				</if>
+		        <if test="usTotalScore != null and usTotalScore!='' ">
+		       us_total_score=#{usTotalScore},
+				</if>
+		        <if test="edIsDelete != null and edIsDelete!='' ">
+		       ed_is_delete=#{edIsDelete},
+				</if>
+		        <if test="createTime != null">
+		        create_time=#{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		        update_time=#{updateTime},
+				</if> 
+		  </trim>
+		 where ed_id =#{edId}
+	</update>
+
+	 <update id="updateByIds">
+          update exam_detail  set
+	     <trim suffixOverrides="," >
+		        <if test="entity.exId != null">
+		        ex_id= #{entity.exId},
+				</if> 
+		        <if test="entity.usId != null">
+		        us_id= #{entity.usId},
+				</if> 
+		        <if test="entity.usName != null and entity.usName != '' ">
+		        us_name= #{entity.usName},
+				</if>
+		        <if test="entity.edAchievement != null and entity.edAchievement != '' ">
+		        ed_achievement= #{entity.edAchievement},
+				</if>
+		        <if test="entity.usEducationid != null and entity.usEducationid != '' ">
+		        us_educationid= #{entity.usEducationid},
+				</if>
+		        <if test="entity.usCode != null and entity.usCode != '' ">
+		        us_code= #{entity.usCode},
+				</if>
+		        <if test="entity.usTotalScore != null and entity.usTotalScore != '' ">
+		        us_total_score= #{entity.usTotalScore},
+				</if>
+		        <if test="entity.edIsDelete != null and entity.edIsDelete != '' ">
+		        ed_is_delete= #{entity.edIsDelete},
+				</if>
+		        <if test="entity.createTime != null">
+		        create_time= #{entity.createTime},
+				</if> 
+		        <if test="entity.updateTime != null">
+		        update_time= #{entity.updateTime},
+				</if> 
+		  </trim>
+		 where ed_id in
+		  <foreach collection="ids" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>
+	</update>
+     
+	
+	<delete id="deleteById">
+        delete from exam_detail where ed_id =#{edId}
+    </delete>
+    
+     <delete id="deleteByIds">
+        delete from exam_detail where ed_id in 
+        <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+        </foreach>  
+	</delete>
+    
+    <delete id="delete" parameterType="com.yjtoon.school.domain.ExamDetail">
+        delete from exam_detail where 1=1 <include refid="whereSql"/> 
+    </delete>
+   
+</mapper>

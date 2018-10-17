@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.yjtoon.school.mapper.INoticePictureMapper" >
+  <resultMap id="BaseResultMap" type="com.yjtoon.school.domain.NoticePicture" >
+          <id column="np_id" property="npId" jdbcType="BIGINT" />
+            <result column="no_id" property="noId" jdbcType="BIGINT" />
+            <result column="np_url" property="npUrl" jdbcType="VARCHAR" />
+	  <result column="np_sort" property="npSort" jdbcType="INTEGER" />
+	  <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	  <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+	<sql id="baseColumns">
+		np_id
+		,no_id
+		,np_url
+		,np_sort
+		,create_time
+         ,update_time
+  </sql>
+  
+  <sql id="whereSql">
+        <if test="npId != null">
+         and np_id=#{npId}
+		</if> 
+        <if test="noId != null">
+         and no_id=#{noId}
+		</if> 
+        <if test="npUrl != null and npUrl!='' ">
+         and np_url=#{npUrl}
+		</if>
+        <if test="npSort != null">
+         and np_sort=#{npSort}
+		</if> 
+        <if test="createTime != null">
+         and create_time=#{createTime}
+		</if> 
+        <if test="updateTime != null">
+         and update_time=#{updateTime}
+		</if> 
+  </sql>
+  
+  	<select id="getById" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/>
+		from notice_picture  where np_id =#{npId}
+	</select>
+	
+	<select id="getByIds" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_picture  where np_id in
+	     <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>  
+	</select>
+	
+	<select id="get" resultMap="BaseResultMap" parameterType="com.yjtoon.school.domain.NoticePicture">
+		select <include refid="baseColumns"/>
+		from notice_picture  where 1=1 <include refid="whereSql"/> limit 1
+	</select>
+	
+	<select id="findAllList" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_picture
+	</select>
+	
+	<select id="findList"  parameterType="com.yjtoon.school.domain.NoticePicture" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_picture where 1=1 <include refid="whereSql"/>
+	      <if test="orderBy != null and orderBy!='' ">
+                order by ${orderBy}  
+            </if>
+	</select>
+
+	
+	 <select id="getCount"  parameterType="com.yjtoon.school.domain.NoticePicture" resultType="java.lang.Integer">
+         select count(1) from notice_picture where 1=1 <include refid="whereSql"/>
+      </select>
+
+    <select id="findEntityWrapper"  parameterType="com.yjtoon.framework.sqlplus.EntityWrapper" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_picture where 1=1  ${ew.getSqlSegment()} 
+	</select>
+	
+      <insert id="insert" useGeneratedKeys="true" keyProperty="npId" parameterType="com.yjtoon.school.domain.NoticePicture">
+       insert into notice_picture 
+		<trim prefix="(" suffix=")" suffixOverrides=","> 
+		        <if test="npId != null">
+		          np_id,
+				</if> 
+		        <if test="noId != null">
+		          no_id,
+				</if> 
+		        <if test="npUrl != null and npUrl!='' ">
+		         np_url,
+				</if>
+		        <if test="npSort != null">
+		          np_sort,
+				</if> 
+		        <if test="createTime != null">
+		          create_time,
+				</if> 
+		        <if test="updateTime != null">
+		          update_time,
+				</if> 
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		        <if test="npId != null">
+		         #{npId},
+				</if> 
+		        <if test="noId != null">
+		         #{noId},
+				</if> 
+		        <if test="npUrl != null and npUrl!='' ">
+		        #{npUrl},
+				</if>
+		        <if test="npSort != null">
+		         #{npSort},
+				</if> 
+		        <if test="createTime != null">
+		         #{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		         #{updateTime},
+				</if> 
+		</trim>
+    </insert>
+    
+    <update id="updateById" parameterType="com.yjtoon.school.domain.NoticePicture">
+	    update notice_picture  set
+	     <trim suffixOverrides="," >
+		        <if test="noId != null">
+		        no_id=#{noId},
+				</if> 
+		        <if test="npUrl != null and npUrl!='' ">
+		       np_url=#{npUrl},
+				</if>
+		        <if test="npSort != null">
+		        np_sort=#{npSort},
+				</if> 
+		        <if test="createTime != null">
+		        create_time=#{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		        update_time=#{updateTime},
+				</if> 
+		  </trim>
+		 where np_id =#{npId}
+	</update>
+
+	 <update id="updateByIds">
+          update notice_picture  set
+	     <trim suffixOverrides="," >
+		        <if test="entity.noId != null">
+		        no_id= #{entity.noId},
+				</if> 
+		        <if test="entity.npUrl != null and entity.npUrl != '' ">
+		        np_url= #{entity.npUrl},
+				</if>
+		        <if test="entity.npSort != null">
+		        np_sort= #{entity.npSort},
+				</if> 
+		        <if test="entity.createTime != null">
+		        create_time= #{entity.createTime},
+				</if> 
+		        <if test="entity.updateTime != null">
+		        update_time= #{entity.updateTime},
+				</if> 
+		  </trim>
+		 where np_id in
+		  <foreach collection="ids" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>
+	</update>
+     
+	
+	<delete id="deleteById">
+        delete from notice_picture where np_id =#{npId}
+    </delete>
+    
+     <delete id="deleteByIds">
+        delete from notice_picture where np_id in 
+        <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+        </foreach>  
+	</delete>
+    
+    <delete id="delete" parameterType="com.yjtoon.school.domain.NoticePicture">
+        delete from notice_picture where 1=1 <include refid="whereSql"/> 
+    </delete>
+   
+</mapper>

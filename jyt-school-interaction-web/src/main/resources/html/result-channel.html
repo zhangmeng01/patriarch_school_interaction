@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/react.css">
+    <link rel="stylesheet" href="./css/result-channel.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+<div class="contentBox">
+    <form name="form1" id="form1">
+       <!--标题-->
+        <div class="title">成绩导入</div>
+        <!--导入文件-->
+        <div class="article-box">
+            <span>请选择需要导入的文件：</span>
+            <input type="text" class="text-input" id="input_value" disabled>
+            <p>选择文件
+                <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="btn_file"/>
+            </p>
+            <span id="btn_download">下载模板</span>
+            <span>注：文件支持xlsx</span>
+        </div>
+        <!--班级-->
+        <div class="classRoom">
+            <span>班级：</span>
+            <span id="result_class"></span>
+        </div>
+        <!--考试信息-->
+        <div class="test-info">
+            <span>考试信息：</span>
+            <select name="" id="result_infos">
+                <option value="">学年</option>
+            </select>
+            <select name="" id="result_types">
+                <option value="">考试类型</option>
+                <option value="">期中考试</option>
+                <option value="">期末考试</option>
+                <option value="">月考</option>
+                <option value="">模拟考试</option>
+            </select>
+        </div>
+        <!--考试名称-->
+        <div class="test-name">
+            <span>考试名称：</span>
+            <input type="text" placeholder="请输入考试名称" id="result_contents" maxlength="20" onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5-]/g,'')">
+        </div>
+        <!--提示-->
+        <div class="reminder"><img src="./images/icon_tishi.png" alt="">考试名称已存在，继续导入可能覆盖历史数据，请谨慎操作。</div>
+    </form>
+        <!--按钮栏-->
+        <div class="btn-box">
+            <input type="button" name="button" value="导入" onclick="fsubmit()" />
+            <button  onclick="btn_backList()">取消</button>
+        </div>
+
+</div>
+<!--灰色遮罩层-->
+<div class="gray_layersBox"></div>
+<!--成绩导入-->
+<div class="result_layersBox">
+    <!--上面的文字提示-->
+    <div class="top-title">
+        <p>
+            <span>成绩导入</span>
+            <!--<img src="./images/icon_fanhui.png" alt="">-->
+        </p>
+    </div>
+    <!--下方图片-->
+    <div class="pictures-box">
+        <img src="./images/icon_loading.gif" alt="">
+        <p>数据导入中...</p>
+    </div>
+</div>
+<!--导入成功-->
+<div class="suceess_layersBox">
+    <!--上面的文字提示-->
+    <div class="top-title">
+        <p>
+            <span>成绩导入</span>
+            <!--<img src="./images/icon_fanhui.png" alt="">-->
+        </p>
+    </div>
+    <!--中间的图片-->
+    <div class="center-pictures">
+        <img src="./images/icon_success.png" alt="">
+        <p id="success_texts"></p>
+        <!--按钮栏-->
+        <div class="btn-box">
+            <button id="btn_backs">返回列表</button>
+        </div>
+    </div>
+
+</div>
+<!--导入失败-->
+<div class="error_layersBox">
+    <!--上面的文字提示-->
+    <div class="top-title">
+        <p>
+            <span>成绩导入</span>
+            <!--<img src="./images/icon_fanhui.png" alt="">-->
+        </p>
+    </div>
+    <div class="maxBox">
+        <!--提示文字-->
+        <div class="reminder-box">
+            <img src="./images/icon_tishi.png" alt="">
+            <span>数据导入失败，请修改相应信息后，再次导入</span>
+        </div>
+
+        <!--图片栏-->
+        <div class="pictures-box">
+            <img src="./images/icon_success.png" alt="">
+            <p id="numbers_errors">本次未成功导入：10</p>
+            <p class="texts">
+            <ul id="message_error">
+
+            </ul>
+            </p>
+            <div class="btn-box">
+                <button id="btns_sures">确定</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="./js/jquery-1.12.2.js"></script>
+<script src="./layui/layui.all.js"></script>
+<script src="./layui/layui.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/result-channel.js"></script>
+<script>
+
+</script>
+</html>

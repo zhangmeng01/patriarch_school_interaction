@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.yjtoon.school.mapper.IAchievementMapper" >
+  <resultMap id="BaseResultMap" type="com.yjtoon.school.domain.Achievement" >
+          <id column="ac_id" property="acId" jdbcType="BIGINT" />
+            <result column="ex_id" property="exId" jdbcType="BIGINT" />
+            <result column="ci_id" property="ciId" jdbcType="BIGINT" />
+            <result column="us_id" property="usId" jdbcType="BIGINT" />
+            <result column="us_name" property="usName" jdbcType="VARCHAR" />
+            <result column="us_educationid" property="usEducationid" jdbcType="VARCHAR" />
+  			<result column="us_code" property="usCode" jdbcType="VARCHAR" />
+            <result column="subject_id" property="subjectId" jdbcType="BIGINT" />
+            <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+            <result column="subject_sort" property="subjectSort" jdbcType="INTEGER" />
+            <result column="score" property="score" jdbcType="DECIMAL" />
+            <result column="ac_is_delete" property="acIsDelete" jdbcType="CHAR" />
+            <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+            <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   
+  <sql id="baseColumns">
+         ac_id
+         ,ex_id
+         ,ci_id
+         ,us_id
+         ,us_name
+         ,us_educationid
+         ,us_code
+         ,subject_id
+         ,subject_name
+         ,subject_sort
+         ,score
+         ,ac_is_delete
+         ,creat_time
+         ,update_time
+  </sql>
+  
+  <sql id="whereSql">
+        <if test="acId != null">
+         and ac_id=#{acId}
+		</if> 
+        <if test="exId != null">
+         and ex_id=#{exId}
+		</if> 
+        <if test="ciId != null">
+         and ci_id=#{ciId}
+		</if> 
+        <if test="usId != null">
+         and us_id=#{usId}
+		</if> 
+        <if test="usName != null and usName!='' ">
+         and us_name=#{usName}
+		</if>
+        <if test="usEducationid != null and usEducationid!='' ">
+         and us_educationid=#{usEducationid}
+		</if>
+	    <if test="usCode != null and usCode!='' ">
+		  and us_code=#{usCode}
+	    </if>
+        <if test="subjectId != null">
+         and subject_id=#{subjectId}
+		</if> 
+        <if test="subjectName != null and subjectName!='' ">
+         and subject_name=#{subjectName}
+		</if>
+        <if test="subjectSort != null">
+         and subject_sort=#{subjectSort}
+		</if> 
+        <if test="score != null and score!='' ">
+         and score=#{score}
+		</if>
+        <if test="acIsDelete != null and acIsDelete!='' ">
+         and ac_is_delete=#{acIsDelete}
+		</if>
+        <if test="creatTime != null">
+         and creat_time=#{creatTime}
+		</if> 
+        <if test="updateTime != null">
+         and update_time=#{updateTime}
+		</if> 
+  </sql>
+  
+  	<select id="getById" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/>
+		from achievement  where ac_id =#{acId}
+	</select>
+	
+	<select id="getByIds" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from achievement  where ac_id in
+	     <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>  
+	</select>
+	
+	<select id="get" resultMap="BaseResultMap" parameterType="com.yjtoon.school.domain.Achievement">
+		select <include refid="baseColumns"/>
+		from achievement  where 1=1 <include refid="whereSql"/> limit 1
+	</select>
+	
+	<select id="findAllList" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from achievement
+	</select>
+	
+	<select id="findList"  parameterType="com.yjtoon.school.domain.Achievement" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from achievement where 1=1 <include refid="whereSql"/>
+	      <if test="orderBy != null and orderBy!='' ">
+                order by ${orderBy}  
+            </if>
+	</select>
+
+	
+	 <select id="getCount"  parameterType="com.yjtoon.school.domain.Achievement" resultType="java.lang.Integer">
+         select count(1) from achievement where 1=1 <include refid="whereSql"/>
+      </select>
+
+    <select id="findEntityWrapper"  parameterType="com.yjtoon.framework.sqlplus.EntityWrapper" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from achievement where 1=1  ${ew.getSqlSegment()} 
+	</select>
+	
+      <insert id="insert" useGeneratedKeys="true" keyProperty="acId" parameterType="com.yjtoon.school.domain.Achievement">
+       insert into achievement 
+		<trim prefix="(" suffix=")" suffixOverrides=","> 
+		        <if test="acId != null">
+		          ac_id,
+				</if> 
+		        <if test="exId != null">
+		          ex_id,
+				</if> 
+		        <if test="ciId != null">
+		          ci_id,
+				</if> 
+		        <if test="usId != null">
+		          us_id,
+				</if> 
+		        <if test="usName != null and usName!='' ">
+		         us_name,
+				</if>
+		        <if test="usEducationid != null and usEducationid!='' ">
+		         us_educationid,
+				</if>
+				<if test="usCode != null and usCode!='' ">
+					us_code,
+				</if>
+		        <if test="subjectId != null">
+		          subject_id,
+				</if> 
+		        <if test="subjectName != null and subjectName!='' ">
+		         subject_name,
+				</if>
+		        <if test="subjectSort != null">
+		          subject_sort,
+				</if> 
+		        <if test="score != null and score!='' ">
+		         score,
+				</if>
+		        <if test="acIsDelete != null and acIsDelete!='' ">
+		         ac_is_delete,
+				</if>
+		        <if test="creatTime != null">
+		          creat_time,
+				</if> 
+		        <if test="updateTime != null">
+		          update_time,
+				</if> 
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		        <if test="acId != null">
+		         #{acId},
+				</if> 
+		        <if test="exId != null">
+		         #{exId},
+				</if> 
+		        <if test="ciId != null">
+		         #{ciId},
+				</if> 
+		        <if test="usId != null">
+		         #{usId},
+				</if> 
+		        <if test="usName != null and usName!='' ">
+		        #{usName},
+				</if>
+		        <if test="usEducationid != null and usEducationid!='' ">
+		        #{usEducationid},
+				</if>
+				<if test="usCode != null and usCode!='' ">
+					#{usCode},
+				</if>
+		        <if test="subjectId != null">
+		         #{subjectId},
+				</if> 
+		        <if test="subjectName != null and subjectName!='' ">
+		        #{subjectName},
+				</if>
+		        <if test="subjectSort != null">
+		         #{subjectSort},
+				</if> 
+		        <if test="score != null and score!='' ">
+		        #{score},
+				</if>
+		        <if test="acIsDelete != null and acIsDelete!='' ">
+		        #{acIsDelete},
+				</if>
+		        <if test="creatTime != null">
+		         #{creatTime},
+				</if> 
+		        <if test="updateTime != null">
+		         #{updateTime},
+				</if> 
+		</trim>
+    </insert>
+    
+    <update id="updateById" parameterType="com.yjtoon.school.domain.Achievement">
+	    update achievement  set
+	     <trim suffixOverrides="," >
+		        <if test="exId != null">
+		        ex_id=#{exId},
+				</if> 
+		        <if test="ciId != null">
+		        ci_id=#{ciId},
+				</if> 
+		        <if test="usId != null">
+		        us_id=#{usId},
+				</if> 
+		        <if test="usName != null and usName!='' ">
+		       us_name=#{usName},
+				</if>
+		        <if test="usEducationid != null and usEducationid!='' ">
+		       us_educationid=#{usEducationid},
+				</if>
+				 <if test="usCode != null and usCode!='' ">
+					 us_code=#{usCode},
+				 </if>
+		        <if test="subjectId != null">
+		        subject_id=#{subjectId},
+				</if> 
+		        <if test="subjectName != null and subjectName!='' ">
+		       subject_name=#{subjectName},
+				</if>
+		        <if test="subjectSort != null">
+		        subject_sort=#{subjectSort},
+				</if> 
+		        <if test="score != null and score!='' ">
+		       score=#{score},
+				</if>
+		        <if test="acIsDelete != null and acIsDelete!='' ">
+		       ac_is_delete=#{acIsDelete},
+				</if>
+		        <if test="creatTime != null">
+		        creat_time=#{creatTime},
+				</if> 
+		        <if test="updateTime != null">
+		        update_time=#{updateTime},
+				</if> 
+		  </trim>
+		 where ac_id =#{acId}
+	</update>
+
+	 <update id="updateByIds">
+          update achievement  set
+	     <trim suffixOverrides="," >
+		        <if test="entity.exId != null">
+		        ex_id= #{entity.exId},
+				</if> 
+		        <if test="entity.ciId != null">
+		        ci_id= #{entity.ciId},
+				</if> 
+		        <if test="entity.usId != null">
+		        us_id= #{entity.usId},
+				</if> 
+		        <if test="entity.usName != null and entity.usName != '' ">
+		        us_name= #{entity.usName},
+				</if>
+		        <if test="entity.usEducationid != null and entity.usEducationid != '' ">
+		        us_educationid= #{entity.usEducationid},
+				</if>
+				 <if test="entity.usCode != null and entity.usCode != '' ">
+					 us_code= #{entity.usCode},
+				 </if>
+		        <if test="entity.subjectId != null">
+		        subject_id= #{entity.subjectId},
+				</if> 
+		        <if test="entity.subjectName != null and entity.subjectName != '' ">
+		        subject_name= #{entity.subjectName},
+				</if>
+		        <if test="entity.subjectSort != null">
+		        subject_sort= #{entity.subjectSort},
+				</if> 
+		        <if test="entity.score != null and entity.score != '' ">
+		        score= #{entity.score},
+				</if>
+		        <if test="entity.acIsDelete != null and entity.acIsDelete != '' ">
+		        ac_is_delete= #{entity.acIsDelete},
+				</if>
+		        <if test="entity.creatTime != null">
+		        creat_time= #{entity.creatTime},
+				</if> 
+		        <if test="entity.updateTime != null">
+		        update_time= #{entity.updateTime},
+				</if> 
+		  </trim>
+		 where ac_id in
+		  <foreach collection="ids" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>
+	</update>
+     
+	
+	<delete id="deleteById">
+        delete from achievement where ac_id =#{acId}
+    </delete>
+    
+     <delete id="deleteByIds">
+        delete from achievement where ac_id in 
+        <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+        </foreach>  
+	</delete>
+    
+    <delete id="delete" parameterType="com.yjtoon.school.domain.Achievement">
+        delete from achievement where 1=1 <include refid="whereSql"/> 
+    </delete>
+
+
+	<select id="findAchievementDtoList"  resultType="java.util.HashMap">
+		SELECT us_id,us_name,ac_is_delete ,us_educationid,us_code,
+		<foreach collection="subjectNameList" item="item" index="index"  open="" close="" separator="">
+			SUM( CASE WHEN subject_name = #{item} THEN
+			score  END) as  #{item},
+		</foreach>
+		sum(score) as score
+		FROM  achievement where ex_id = #{exId} and ac_is_delete = 'N'
+		GROUP BY us_id,us_name,ac_is_delete,us_educationid,us_code order by score desc
+	</select>
+	<!--  根据EXID批量修改(删除这次考试对应的成绩)-->
+	<update id="updateByExId" parameterType="com.yjtoon.school.domain.Achievement">
+	update achievement  set
+	<trim suffixOverrides="," >
+		<if test="ciId != null">
+			ci_id=#{ciId},
+		</if>
+		<if test="usId != null">
+			us_id=#{usId},
+		</if>
+		<if test="usName != null and usName!='' ">
+			us_name=#{usName},
+		</if>
+		<if test="subjectName != null and subjectName!='' ">
+			subject_name=#{subjectName},
+		</if>
+		<if test="subjectSort != null">
+			subject_sort=#{subjectSort},
+		</if>
+		<if test="score != null and score!='' ">
+			score=#{score},
+		</if>
+		<if test="acIsDelete != null and acIsDelete!='' ">
+			ac_is_delete=#{acIsDelete},
+		</if>
+		<if test="creatTime != null">
+			creat_time=#{creatTime},
+		</if>
+		<if test="updateTime != null">
+			update_time=#{updateTime},
+		</if>
+	</trim>
+	where ex_id=#{exId}
+	</update>
+
+	<update id="deleteAchievement" parameterType="com.yjtoon.school.domain.Achievement">
+		update achievement  set
+		<trim suffixOverrides="," >
+			<if test="ciId != null">
+				ci_id=#{ciId},
+			</if>
+			<if test="usId != null">
+				us_id=#{usId},
+			</if>
+			<if test="usName != null and usName!='' ">
+				us_name=#{usName},
+			</if>
+			<if test="subjectName != null and subjectName!='' ">
+				subject_name=#{subjectName},
+			</if>
+			<if test="subjectSort != null">
+				subject_sort=#{subjectSort},
+			</if>
+			<if test="score != null and score!='' ">
+				score=#{score},
+			</if>
+			<if test="acIsDelete != null and acIsDelete!='' ">
+				ac_is_delete=#{acIsDelete},
+			</if>
+			<if test="creatTime != null">
+				creat_time=#{creatTime},
+			</if>
+			<if test="updateTime != null">
+				update_time=#{updateTime},
+			</if>
+		</trim>
+		where ex_id=#{exId}	and us_id=#{usId}
+	</update>
+
+	<update id="updateAchievement" parameterType="com.yjtoon.school.domain.Achievement">
+		update achievement  set
+		<trim suffixOverrides="," >
+			<if test="ciId != null">
+				ci_id=#{ciId},
+			</if>
+			<if test="usId != null">
+				us_id=#{usId},
+			</if>
+			<if test="usName != null and usName!='' ">
+				us_name=#{usName},
+			</if>
+			<if test="subjectSort != null">
+				subject_sort=#{subjectSort},
+			</if>
+			<if test="score != null and score!='' ">
+				score=#{score},
+			</if>
+			<if test="acIsDelete != null and acIsDelete!='' ">
+				ac_is_delete=#{acIsDelete},
+			</if>
+			<if test="creatTime != null">
+				creat_time=#{creatTime},
+			</if>
+			<if test="updateTime != null">
+				update_time=#{updateTime},
+			</if>
+		</trim>
+		where ex_id=#{exId}	and subject_name=#{subjectName}
+		<if test="usEducationid != null and usEducationid!='' ">
+			and us_educationid=#{usEducationid}
+		</if>
+		<if test="usId != null">
+			and us_id=#{usId}
+		</if>
+	</update>
+	<select id="findMyScore"  resultType="java.util.HashMap">
+		SELECT us_id,us_name,ac_is_delete ,us_educationid,us_code,ex_id,
+		sum(score) as score
+		FROM  achievement where  ac_is_delete = 'N' and us_id = #{usId}
+		GROUP BY us_id,us_name,ac_is_delete,us_educationid,us_code,ex_id order by ex_id desc limit 0,6
+	</select>
+	<select id="findMaxAndAvgScore"  resultType="java.util.HashMap">
+		select avg(s.score) avg_score, max(s.score) max_score, ex_id from (
+			select  sum(score) score  ,ex_id from achievement where ac_is_delete = 'N' and ci_id = #{ciId} GROUP BY us_id,ex_id
+		) s group by ex_id order by ex_id desc limit 0,6
+	</select>
+
+
+
+	<select id="findMyScoreAndRank"  resultType="java.util.HashMap">
+		select '总分' as subject,
+		sum(score) as score,
+		(select avg(t1.score) as score from (
+		select sum(score) as score
+		from achievement b1
+		where b1.ex_id=#{exId}
+		group by b1.us_id) t1) as avgscore
+		from achievement a1
+		where a1.ex_id=#{exId} and
+		a1.us_id=#{usId}
+		<foreach collection="subjectNameList" item="item" index="index"  open="" close="" separator="">
+		union all
+		select  a2.subject_name,
+		a2.score,
+		(select avg(score) as score
+		from achievement b2
+		where b2.ex_id=#{exId} and
+		b2.subject_name=#{item}) as avgscore
+		from achievement a2
+		where a2.ex_id=#{exId} and
+		a2.us_id=#{usId} and
+		a2.subject_name=#{item}
+		</foreach>
+	</select>
+
+	<select id="findMySort"  resultType="java.util.HashMap">
+	select m.*,(@i:=@i+1) sort from (
+	SELECT    us_id usId,us_name usName,ac_is_delete acIsDelete,
+	sum(score) score
+	FROM  achievement  where ex_id = #{exId} and  ac_is_delete = 'N'
+	GROUP BY us_id,us_name,ac_is_delete order by score desc
+	) m ,(SELECT @i:=0) as i
+	</select>
+
+	<select id="getUsidByExid" resultType="java.util.HashMap">
+		select  us_id as ut_id from achievement where ac_is_delete = 'N' and  ex_id =#{exId} GROUP BY us_id
+	</select>
+</mapper>

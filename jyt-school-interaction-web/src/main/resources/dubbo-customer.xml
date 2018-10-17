@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <!-- 消费者 应用信息 -->
+    <dubbo:application name="jyt-school-interaction"/>
+
+    <!-- 注册中心服务地址 -->
+    <dubbo:registry  protocol="zookeeper" address="172.28.18.49:2181,172.28.18.50:2181,172.28.18.51:2181,172.28.18.52:2181,172.28.18.53:2181" />
+    
+    <!-- 消费者配置 -->
+    <dubbo:consumer check="false" timeout="90000" retries="0" cluster="failfast" />
+    
+    <!-- 使用注解方式-->
+    <dubbo:annotation package="com.yjtoon.school"/>
+        
+</beans>

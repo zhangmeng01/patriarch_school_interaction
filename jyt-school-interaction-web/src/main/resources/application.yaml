@@ -1,0 +1,115 @@
+server:
+  port: 8081
+  context-path: /
+  session:
+    timeout: 60  #单位是秒
+  tomcat:
+    uri-encoding: UTF-8
+#debug: true
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+  cache:
+    type: redis
+#  redis:
+#    database: 0
+#    host: 172.28.19.200 #172.28.19.200
+#    password:
+#    port: 7389 #7389
+#    pool:
+#    # 连接池最大连接数（使用负值表示没有限制）
+#      max-active: 128
+#      # 连接池中的最大空闲连接
+#      max-idle: 16
+#      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+#      max-wait: -1
+#      # 连接池中的最小空闲连接
+#      min-idle: 8
+#      # 连接超时时间（毫秒）
+#    timeout: 0
+#  aop:
+#    proxy-target-class: true
+logging:
+  config: classpath:log4j2.xml
+  pattern:
+    level: info
+
+#    cluster:
+#      nodes: 172.31.245.49:6379
+#      max-redirects: 2
+# spring.redis.cluster.max-redirects= 3
+#数据源
+druid:
+    type: com.alibaba.druid.pool.DruidDataSource
+    initsource: 1 # 1-普通方式 2-外部tomcat jndi  3-数据源配置到disconf 名称datasource.properties
+    masterjndi: java:comp/env/jdbc/jyt_school_interaction_w
+    slavejndi: java:comp/env/jdbc/jyt_school_interaction_r
+    master:
+        url: jdbc:mysql://172.28.5.92:3306/jyt_school_interaction?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: syswin
+        password: syswin
+        initial-size: 5
+        min-idle: 10
+        max-active: 100
+        maxwWait: 10000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 6000
+        validationQuery: SELECT 1
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,log4j
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        useGlobalDataSourceStat: true
+    slave:
+        url: jdbc:mysql://172.28.5.92:3306/jyt_school_interaction?autoReconnect=true&useUnicode=true&characterEncoding=utf-8
+        driver-class-name: com.mysql.jdbc.Driver
+        username: syswin
+        password: syswin
+        initial-size: 5
+        min-idle: 10
+        max-active: 100
+        maxwWait: 10000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 6000
+        validationQuery: SELECT 1
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,log4j
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        useGlobalDataSourceStat: true
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: false
+  offset-as-page-num: false
+  row-bounds-with-count: true
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  config-location: classpath:mybatisConfig.xml
+  type-aliases-package: com.yjtoon.school.domain
+
+#
+#server:
+#  port: 8086
+#
+#spring:
+#  dubbo:
+#    application:            #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。
+#      name: Provide
+#    registry:                 #注册中心配置，用于配置连接注册中心相关信息。
+#      address: zookeeper://127.0.0.1:2181
+#    protocol:     #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。
+#      name: dubbo
+#      port: 20880
+#    scan: com.dubboProvide.dubboProvide.service  #服务暴露与发现消费所在的package
+#

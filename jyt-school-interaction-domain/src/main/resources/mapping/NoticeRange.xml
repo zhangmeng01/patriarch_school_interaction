@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.yjtoon.school.mapper.INoticeRangeMapper" >
+  <resultMap id="BaseResultMap" type="com.yjtoon.school.domain.NoticeRange" >
+          <id column="nr_id" property="nrId" jdbcType="BIGINT" />
+            <result column="no_id" property="noId" jdbcType="BIGINT" />
+            <result column="gr_id" property="grId" jdbcType="BIGINT" />
+            <result column="ci_id" property="ciId" jdbcType="BIGINT" />
+            <result column="nr_user_id" property="nrUserId" jdbcType="BIGINT" />
+            <result column="nr_type" property="nrType" jdbcType="TINYINT" />
+            <result column="nr_receipt" property="nrReceipt" jdbcType="TINYINT" />
+            <result column="nr_receipt_time" property="nrReceiptTime" jdbcType="TIMESTAMP" />
+            <result column="nr_remind" property="nrRemind" jdbcType="TINYINT" />
+            <result column="nr_remind_time" property="nrRemindTime" jdbcType="TIMESTAMP" />
+            <result column="nr_consult" property="nrConsult" jdbcType="TINYINT" />
+            <result column="nr_consult_time" property="nrConsultTime" jdbcType="TIMESTAMP" />
+            <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+            <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapExt" type="com.yjtoon.school.vo.NoticeRangeExtVO" extends="BaseResultMap">
+  	<result column="name" property="name" jdbcType="VARCHAR" />
+  	<result column="iconUrl" property="iconUrl" jdbcType="VARCHAR" />
+  </resultMap>
+   
+  <sql id="baseColumns">
+         nr_id
+         ,no_id
+         ,gr_id
+         ,ci_id
+         ,nr_user_id
+         ,nr_type
+         ,nr_receipt
+         ,nr_receipt_time
+         ,nr_remind
+         ,nr_remind_time
+         ,nr_consult
+         ,nr_consult_time
+         ,create_time
+         ,update_time
+  </sql>
+  
+  <sql id="whereSql">
+        <if test="nrId != null">
+         and nr_id=#{nrId}
+		</if> 
+        <if test="noId != null">
+         and no_id=#{noId}
+		</if> 
+        <if test="grId != null">
+         and gr_id=#{grId}
+		</if> 
+        <if test="ciId != null">
+         and ci_id=#{ciId}
+		</if> 
+        <if test="nrUserId != null">
+         and nr_user_id=#{nrUserId}
+		</if> 
+        <if test="nrType != null">
+         and nr_type=#{nrType}
+		</if> 
+        <if test="nrReceipt != null">
+         and nr_receipt=#{nrReceipt}
+		</if> 
+        <if test="nrReceiptTime != null">
+         and nr_receipt_time=#{nrReceiptTime}
+		</if> 
+        <if test="nrRemind != null">
+         and nr_remind=#{nrRemind}
+		</if> 
+        <if test="nrRemindTime != null">
+         and nr_remind_time=#{nrRemindTime}
+		</if> 
+        <if test="nrConsult != null">
+         and nr_consult=#{nrConsult}
+		</if> 
+        <if test="nrConsultTime != null">
+         and nr_consult_time=#{nrConsultTime}
+		</if> 
+        <if test="createTime != null">
+         and create_time=#{createTime}
+		</if> 
+        <if test="updateTime != null">
+         and update_time=#{updateTime}
+		</if> 
+  </sql>
+  
+  	<select id="getById" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/>
+		from notice_range  where nr_id =#{nrId}
+	</select>
+	
+	<select id="getByIds" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_range  where nr_id in
+	     <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>  
+	</select>
+	
+	<select id="get" resultMap="BaseResultMap" parameterType="com.yjtoon.school.domain.NoticeRange">
+		select <include refid="baseColumns"/>
+		from notice_range  where 1=1 <include refid="whereSql"/> limit 1
+	</select>
+	
+	<select id="findAllList" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_range
+	</select>
+	
+	<select id="findList"  parameterType="com.yjtoon.school.domain.NoticeRange" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_range where 1=1 <include refid="whereSql"/>
+	      <if test="orderBy != null and orderBy!='' ">
+                order by ${orderBy}  
+            </if>
+	</select>
+
+	
+	 <select id="getCount"  parameterType="com.yjtoon.school.domain.NoticeRange" resultType="java.lang.Integer">
+         select count(1) from notice_range where 1=1 <include refid="whereSql"/>
+      </select>
+
+    <select id="findEntityWrapper"  parameterType="com.yjtoon.framework.sqlplus.EntityWrapper" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from notice_range where 1=1  ${ew.getSqlSegment()} 
+	</select>
+	
+      <insert id="insert" useGeneratedKeys="true" keyProperty="nrId" parameterType="com.yjtoon.school.domain.NoticeRange">
+       insert into notice_range 
+		<trim prefix="(" suffix=")" suffixOverrides=","> 
+		        <if test="nrId != null">
+		          nr_id,
+				</if> 
+		        <if test="noId != null">
+		          no_id,
+				</if> 
+		        <if test="grId != null">
+		          gr_id,
+				</if> 
+		        <if test="ciId != null">
+		          ci_id,
+				</if> 
+		        <if test="nrUserId != null">
+		          nr_user_id,
+				</if> 
+		        <if test="nrType != null">
+		          nr_type,
+				</if> 
+		        <if test="nrReceipt != null">
+		          nr_receipt,
+				</if> 
+		        <if test="nrReceiptTime != null">
+		          nr_receipt_time,
+				</if> 
+		        <if test="nrRemind != null">
+		          nr_remind,
+				</if> 
+		        <if test="nrRemindTime != null">
+		          nr_remind_time,
+				</if> 
+		        <if test="nrConsult != null">
+		          nr_consult,
+				</if> 
+		        <if test="nrConsultTime != null">
+		          nr_consult_time,
+				</if> 
+		        <if test="createTime != null">
+		          create_time,
+				</if> 
+		        <if test="updateTime != null">
+		          update_time,
+				</if> 
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		        <if test="nrId != null">
+		         #{nrId},
+				</if> 
+		        <if test="noId != null">
+		         #{noId},
+				</if> 
+		        <if test="grId != null">
+		         #{grId},
+				</if> 
+		        <if test="ciId != null">
+		         #{ciId},
+				</if> 
+		        <if test="nrUserId != null">
+		         #{nrUserId},
+				</if> 
+		        <if test="nrType != null">
+		         #{nrType},
+				</if> 
+		        <if test="nrReceipt != null">
+		         #{nrReceipt},
+				</if> 
+		        <if test="nrReceiptTime != null">
+		         #{nrReceiptTime},
+				</if> 
+		        <if test="nrRemind != null">
+		         #{nrRemind},
+				</if> 
+		        <if test="nrRemindTime != null">
+		         #{nrRemindTime},
+				</if> 
+		        <if test="nrConsult != null">
+		         #{nrConsult},
+				</if> 
+		        <if test="nrConsultTime != null">
+		         #{nrConsultTime},
+				</if> 
+		        <if test="createTime != null">
+		         #{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		         #{updateTime},
+				</if> 
+		</trim>
+    </insert>
+    
+    <update id="updateById" parameterType="com.yjtoon.school.domain.NoticeRange">
+	    update notice_range  set
+	     <trim suffixOverrides="," >
+		        <if test="noId != null">
+		        no_id=#{noId},
+				</if> 
+		        <if test="grId != null">
+		        gr_id=#{grId},
+				</if> 
+		        <if test="ciId != null">
+		        ci_id=#{ciId},
+				</if> 
+		        <if test="nrUserId != null">
+		        nr_user_id=#{nrUserId},
+				</if> 
+		        <if test="nrType != null">
+		        nr_type=#{nrType},
+				</if> 
+		        <if test="nrReceipt != null">
+		        nr_receipt=#{nrReceipt},
+				</if> 
+		        <if test="nrReceiptTime != null">
+		        nr_receipt_time=#{nrReceiptTime},
+				</if> 
+		        <if test="nrRemind != null">
+		        nr_remind=#{nrRemind},
+				</if> 
+		        <if test="nrRemindTime != null">
+		        nr_remind_time=#{nrRemindTime},
+				</if> 
+		        <if test="nrConsult != null">
+		        nr_consult=#{nrConsult},
+				</if> 
+		        <if test="nrConsultTime != null">
+		        nr_consult_time=#{nrConsultTime},
+				</if> 
+		        <if test="createTime != null">
+		        create_time=#{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		        update_time=#{updateTime},
+				</if> 
+		  </trim>
+		 where nr_id =#{nrId}
+	</update>
+
+	 <update id="updateByIds">
+          update notice_range  set
+	     <trim suffixOverrides="," >
+		        <if test="entity.noId != null">
+		        no_id= #{entity.noId},
+				</if> 
+		        <if test="entity.grId != null">
+		        gr_id= #{entity.grId},
+				</if> 
+		        <if test="entity.ciId != null">
+		        ci_id= #{entity.ciId},
+				</if> 
+		        <if test="entity.nrUserId != null">
+		        nr_user_id= #{entity.nrUserId},
+				</if> 
+		        <if test="entity.nrType != null">
+		        nr_type= #{entity.nrType},
+				</if> 
+		        <if test="entity.nrReceipt != null">
+		        nr_receipt= #{entity.nrReceipt},
+				</if> 
+		        <if test="entity.nrReceiptTime != null">
+		        nr_receipt_time= #{entity.nrReceiptTime},
+				</if> 
+		        <if test="entity.nrRemind != null">
+		        nr_remind= #{entity.nrRemind},
+				</if> 
+		        <if test="entity.nrRemindTime != null">
+		        nr_remind_time= #{entity.nrRemindTime},
+				</if> 
+		        <if test="entity.nrConsult != null">
+		        nr_consult= #{entity.nrConsult},
+				</if> 
+		        <if test="entity.nrConsultTime != null">
+		        nr_consult_time= #{entity.nrConsultTime},
+				</if> 
+		        <if test="entity.createTime != null">
+		        create_time= #{entity.createTime},
+				</if> 
+		        <if test="entity.updateTime != null">
+		        update_time= #{entity.updateTime},
+				</if> 
+		  </trim>
+		 where nr_id in
+		  <foreach collection="ids" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>
+	</update>
+     
+	
+	<delete id="deleteById">
+        delete from notice_range where nr_id =#{nrId}
+    </delete>
+    
+     <delete id="deleteByIds">
+        delete from notice_range where nr_id in 
+        <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+        </foreach>  
+	</delete>
+    
+    <delete id="delete" parameterType="com.yjtoon.school.domain.NoticeRange">
+        delete from notice_range where 1=1 <include refid="whereSql"/> 
+    </delete>
+    
+     <update id="receiptNotice">
+		update notice_range set nr_receipt =1,nr_receipt_time=current_timestamp  where nr_receipt =0 and no_id=#{noId} and nr_user_id=#{nrUserId}
+	</update>
+   
+    <update id="remindNoticeSingle">
+		update notice_range set nr_remind =1,nr_remind_time=current_timestamp  where nr_receipt =0 and nr_remind=0 and no_id=#{noId} and nr_user_id=#{nrUserId}
+	</update>
+   
+    <update id="remindNoticeAll">
+		update notice_range set nr_remind =1,nr_remind_time=current_timestamp  where nr_receipt =0 and nr_remind=0 and no_id=#{noId}
+	</update>
+   
+    <update id="consultNotice">
+		update notice_range set nr_consult =1,nr_consult_time=current_timestamp  where nr_consult =0 and no_id=#{noId} and nr_user_id=#{nrUserId}
+	</update>
+   
+    <select id="getClassByNoticeId" resultType="Long">
+		select distinct ci_id from notice_range where no_id=#{noId}
+	</select>
+	
+	<select id="getReceiptPersonList" resultMap="BaseResultMapExt">
+		select <include refid="baseColumns" />
+		from notice_range 
+		where nr_receipt=1 
+		  and no_id=#{noId}
+		order by nr_receipt_time desc
+    </select>
+    
+    <select id="getUnReceiptPersonList" resultMap="BaseResultMapExt">
+		select <include refid="baseColumns" />
+		from notice_range 
+		where nr_receipt=0
+		  and no_id=#{noId}
+    </select>
+    
+    <select id="getConsultPersonList" resultMap="BaseResultMapExt">
+		select <include refid="baseColumns" />
+		from notice_range 
+		where nr_consult=1 
+		  and no_id=#{noId}
+		order by nr_consult_time desc
+    </select>
+    
+    <select id="getUnConsultPersonList" resultMap="BaseResultMapExt">
+		select <include refid="baseColumns" />
+		from notice_range 
+		where nr_consult=0 
+		  and no_id=#{noId}
+    </select>
+</mapper>

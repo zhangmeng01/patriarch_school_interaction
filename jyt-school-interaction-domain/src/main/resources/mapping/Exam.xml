@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.yjtoon.school.mapper.IExamMapper" >
+  <resultMap id="BaseResultMap" type="com.yjtoon.school.domain.Exam" >
+          <id column="ex_id" property="exId" jdbcType="BIGINT" />
+            <result column="ex_name" property="exName" jdbcType="VARCHAR" />
+            <result column="gr_id" property="grId" jdbcType="BIGINT" />
+            <result column="ci_id" property="ciId" jdbcType="BIGINT" />
+            <result column="gr_name" property="grName" jdbcType="VARCHAR" />
+            <result column="ci_name" property="ciName" jdbcType="VARCHAR" />
+            <result column="va_id" property="vaId" jdbcType="BIGINT" />
+            <result column="va_year_num" property="vaYearNum" jdbcType="VARCHAR" />
+            <result column="ex_classify" property="exClassify" jdbcType="VARCHAR" />
+            <result column="ex_is_delete" property="exIsDelete" jdbcType="CHAR" />
+            <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+            <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   
+  <sql id="baseColumns">
+         ex_id
+         ,ex_name
+         ,gr_id
+         ,ci_id
+         ,gr_name
+         ,ci_name
+         ,va_id
+         ,va_year_num
+         ,ex_classify
+         ,ex_is_delete
+         ,create_time
+         ,update_time
+  </sql>
+  
+  <sql id="whereSql">
+        <if test="exId != null">
+         and ex_id=#{exId}
+		</if> 
+        <if test="exName != null and exName!='' ">
+         and ex_name=#{exName}
+		</if>
+        <if test="grId != null">
+         and gr_id=#{grId}
+		</if> 
+        <if test="ciId != null">
+         and ci_id=#{ciId}
+		</if> 
+        <if test="grName != null and grName!='' ">
+         and gr_name=#{grName}
+		</if>
+        <if test="ciName != null and ciName!='' ">
+         and ci_name=#{ciName}
+		</if>
+        <if test="vaId != null">
+         and va_id=#{vaId}
+		</if> 
+        <if test="vaYearNum != null and vaYearNum!='' ">
+         and va_year_num=#{vaYearNum}
+		</if>
+        <if test="exClassify != null and exClassify!='' ">
+         and ex_classify=#{exClassify}
+		</if>
+        <if test="exIsDelete != null and exIsDelete!='' ">
+         and ex_is_delete=#{exIsDelete}
+		</if>
+        <if test="createTime != null">
+         and create_time=#{createTime}
+		</if> 
+        <if test="updateTime != null">
+         and update_time=#{updateTime}
+		</if> 
+  </sql>
+  
+  	<select id="getById" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/>
+		from exam  where ex_id =#{exId}
+	</select>
+	
+	<select id="getByIds" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam  where ex_id in
+	     <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>  
+	</select>
+	
+	<select id="get" resultMap="BaseResultMap" parameterType="com.yjtoon.school.domain.Exam">
+		select <include refid="baseColumns"/>
+		from exam  where 1=1 <include refid="whereSql"/> limit 1
+	</select>
+	
+	<select id="findAllList" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam
+	</select>
+	
+	<select id="findList"  parameterType="com.yjtoon.school.domain.Exam" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam where 1=1 <include refid="whereSql"/>
+	      <if test="orderBy != null and orderBy!='' ">
+                order by ${orderBy}  
+            </if>
+	</select>
+
+	
+	 <select id="getCount"  parameterType="com.yjtoon.school.domain.Exam" resultType="java.lang.Integer">
+         select count(1) from exam where 1=1 <include refid="whereSql"/>
+      </select>
+
+    <select id="findEntityWrapper"  parameterType="com.yjtoon.framework.sqlplus.EntityWrapper" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam where 1=1  ${ew.getSqlSegment()} 
+	</select>
+	
+      <insert id="insert" useGeneratedKeys="true" keyProperty="exId" parameterType="com.yjtoon.school.domain.Exam">
+       insert into exam 
+		<trim prefix="(" suffix=")" suffixOverrides=","> 
+		        <if test="exId != null">
+		          ex_id,
+				</if> 
+		        <if test="exName != null and exName!='' ">
+		         ex_name,
+				</if>
+		        <if test="grId != null">
+		          gr_id,
+				</if> 
+		        <if test="ciId != null">
+		          ci_id,
+				</if> 
+		        <if test="grName != null and grName!='' ">
+		         gr_name,
+				</if>
+		        <if test="ciName != null and ciName!='' ">
+		         ci_name,
+				</if>
+		        <if test="vaId != null">
+		          va_id,
+				</if>
+		        <if test="vaYearNum != null and vaYearNum!='' ">
+		         va_year_num,
+				</if>
+		        <if test="exClassify != null and exClassify!='' ">
+		         ex_classify,
+				</if>
+		        <if test="exIsDelete != null and exIsDelete!='' ">
+		         ex_is_delete,
+				</if>
+		        <if test="createTime != null">
+		          create_time,
+				</if> 
+		        <if test="updateTime != null">
+		          update_time,
+				</if> 
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		        <if test="exId != null">
+		         #{exId},
+				</if> 
+		        <if test="exName != null and exName!='' ">
+		        #{exName},
+				</if>
+		        <if test="grId != null">
+		         #{grId},
+				</if> 
+		        <if test="ciId != null">
+		         #{ciId},
+				</if> 
+		        <if test="grName != null and grName!='' ">
+		        #{grName},
+				</if>
+		        <if test="ciName != null and ciName!='' ">
+		        #{ciName},
+				</if>
+		        <if test="vaId != null">
+		         #{vaId},
+				</if> 
+		        <if test="vaYearNum != null and vaYearNum!='' ">
+		        #{vaYearNum},
+				</if>
+		        <if test="exClassify != null and exClassify!='' ">
+		        #{exClassify},
+				</if>
+		        <if test="exIsDelete != null and exIsDelete!='' ">
+		        #{exIsDelete},
+				</if>
+		        <if test="createTime != null">
+		         #{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		         #{updateTime},
+				</if> 
+		</trim>
+    </insert>
+    
+    <update id="updateById" parameterType="com.yjtoon.school.domain.Exam">
+	    update exam  set
+	     <trim suffixOverrides="," >
+		        <if test="exName != null and exName!='' ">
+		       ex_name=#{exName},
+				</if>
+		        <if test="grId != null">
+		        gr_id=#{grId},
+				</if> 
+		        <if test="ciId != null">
+		        ci_id=#{ciId},
+				</if> 
+		        <if test="grName != null and grName!='' ">
+		       gr_name=#{grName},
+				</if>
+		        <if test="ciName != null and ciName!='' ">
+		       ci_name=#{ciName},
+				</if>
+		        <if test="vaId != null">
+		        va_id=#{vaId},
+				</if> 
+		        <if test="vaYearNum != null and vaYearNum!='' ">
+		       va_year_num=#{vaYearNum},
+				</if>
+		        <if test="exClassify != null and exClassify!='' ">
+		       ex_classify=#{exClassify},
+				</if>
+		        <if test="exIsDelete != null and exIsDelete!='' ">
+		       ex_is_delete=#{exIsDelete},
+				</if>
+		        <if test="createTime != null">
+		        create_time=#{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		        update_time=#{updateTime},
+				</if> 
+		  </trim>
+		 where ex_id =#{exId}
+	</update>
+
+	 <update id="updateByIds">
+          update exam  set
+	     <trim suffixOverrides="," >
+		        <if test="entity.exName != null and entity.exName != '' ">
+		        ex_name= #{entity.exName},
+				</if>
+		        <if test="entity.grId != null">
+		        gr_id= #{entity.grId},
+				</if> 
+		        <if test="entity.ciId != null">
+		        ci_id= #{entity.ciId},
+				</if> 
+		        <if test="entity.grName != null and entity.grName != '' ">
+		        gr_name= #{entity.grName},
+				</if>
+		        <if test="entity.ciName != null and entity.ciName != '' ">
+		        ci_name= #{entity.ciName},
+				</if>
+		        <if test="entity.vaId != null">
+		        va_id= #{entity.vaId},
+				</if> 
+		        <if test="entity.vaYearNum != null and entity.vaYearNum != '' ">
+		        va_year_num= #{entity.vaYearNum},
+				</if>
+		        <if test="entity.exClassify != null and entity.exClassify != '' ">
+		        ex_classify= #{entity.exClassify},
+				</if>
+		        <if test="entity.exIsDelete != null and entity.exIsDelete != '' ">
+		        ex_is_delete= #{entity.exIsDelete},
+				</if>
+		        <if test="entity.createTime != null">
+		        create_time= #{entity.createTime},
+				</if> 
+		        <if test="entity.updateTime != null">
+		        update_time= #{entity.updateTime},
+				</if> 
+		  </trim>
+		 where ex_id in
+		  <foreach collection="ids" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>
+	</update>
+     
+	
+	<delete id="deleteById">
+        delete from exam where ex_id =#{exId}
+    </delete>
+    
+     <delete id="deleteByIds">
+        delete from exam where ex_id in 
+        <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+        </foreach>  
+	</delete>
+    
+    <delete id="delete" parameterType="com.yjtoon.school.domain.Exam">
+        delete from exam where 1=1 <include refid="whereSql"/> 
+    </delete>
+
+
+	<select id="findListByWhere"  parameterType="com.yjtoon.school.domain.Exam" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/> from exam where 1=1
+		<if test="exName != null and exName!='' ">
+			and (instr(ex_name ,#{exName}) > 0 )
+		</if>
+		<if test="vaId != null">
+			and va_id=#{vaId}
+		</if>
+		<if test="vaYearNum != null and vaYearNum!='' ">
+			and va_year_num=#{vaYearNum}
+		</if>
+		<if test="exClassify != null and exClassify!='' ">
+			and ex_classify=#{exClassify}
+		</if>
+		<if test="exIsDelete != null and exIsDelete!='' ">
+			and ex_is_delete=#{exIsDelete}
+		</if>
+		<if test="createTime != null">
+			and create_time=#{createTime}
+		</if>
+		<if test="updateTime != null">
+			and update_time=#{updateTime}
+		</if>
+		<if test="ciId != null">
+			and ci_id=#{ciId}
+		</if>
+		<if test="orderBy != null and orderBy!='' ">
+			order by ${orderBy}
+		</if>
+	</select>
+
+	<select id="getExamByIdsLimit" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/> from exam  where ex_id in
+		<foreach collection="exIdList" item="item" index="index"  open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		order by ex_id desc
+		limit #{pageNum} , #{pageSize}
+	</select>
+
+</mapper>

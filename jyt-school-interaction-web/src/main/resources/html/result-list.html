@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/react.css">
+    <link rel="stylesheet" href="./css/result-list.css">
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+<body>
+   <div class="contentBox">
+       <!--搜索栏-->
+       <div class="search-box">
+           <span>考试名称</span>
+           <input type="text" placeholder="请输入考试名称/关键词" id="result_values" maxlength="20">
+           <span>学年</span>
+           <select id="select_years">
+               <option value="">请选择</option>
+           </select>
+           <span>所属考试类型</span>
+           <select id="select_result">
+               <option value="">请选择</option>
+               <option value="">期中考试</option>
+               <option value="">期末考试</option>
+               <option value="">月考</option>
+               <option value="">模拟考试</option>
+           </select>
+           <button id="btn_search">查询</button>
+           <button id="btn_reset">重置</button>
+       </div>
+       <!--班级-->
+       <div class="classRoom">
+           <span id="ciName"></span>
+           <span id="btn_limt">导入成绩单</span>
+       </div>
+       <!--表格-->
+       <div class="tableBox">
+           <table class="layui-table" lay-skin="line" id="table_data">
+               <colgroup>
+                   <col width="150">
+                   <col width="200">
+                   <col>
+               </colgroup>
+               <thead>
+                   <tr>
+                       <th style="width:20%;text-align: center">学年</th>
+                       <th style="width:20%;text-align: center">考试名称</th>
+                       <th style="width:20%;text-align: center">考试类型</th>
+                       <th style="width:20%;text-align: center">上传时间</th>
+                       <th style="width:20%;text-align: center">操作</th>
+                   </tr>
+               </thead>
+               <tbody id="content_data">
+                   <!--<tr>
+                       <td>2018年-2019学年上学期</td>
+                       <td>2018年第一学期期中考试</td>
+                       <td>期中考试</td>
+                       <td>2018-1-16  12:00</td>
+                       <td name="12">
+                           <span class="details_btn">详情</span>
+                           <span class="delete_btn">删除</span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>2018年-2019学年上学期</td>
+                       <td>2018年第一学期期中考试</td>
+                       <td>期中考试</td>
+                       <td>2018-1-16  12:00</td>
+                       <td>
+                           <span class="details_btn">详情</span>
+                           <span class="delete_btn">删除</span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>2018年-2019学年上学期</td>
+                       <td>2018年第一学期期中考试</td>
+                       <td>期中考试</td>
+                       <td>2018-1-16  12:00</td>
+                       <td>
+                           <span class="details_btn">详情</span>
+                           <span class="delete_btn">删除</span>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>2018年-2019学年上学期</td>
+                       <td>2018年第一学期期中考试</td>
+                       <td>期中考试</td>
+                       <td>2018-1-16  12:00</td>
+                       <td>
+                           <span class="details_btn">详情</span>
+                           <span class="delete_btn">删除</span>
+                       </td>
+                   </tr>-->
+               </tbody>
+           </table>
+       </div>
+       <div class="nothing-box">
+           <p><img src="./images/icon_nothing.png" alt=""></p>
+           <p>暂无内容</p>
+       </div>
+       <!--分页-->
+       <div class="pageContair">
+           <div id="test1"></div>
+       </div>
+   </div>
+   <!--灰色遮罩层-->
+   <div class="gray_layersBox"></div>
+   <!--删除弹框-->
+   <div class="delete_layersBox">
+       <!--上面的文字提示-->
+       <div class="top-title">
+           <p>
+               <span>提示</span>
+               <img src="./images/icon_fanhui.png" alt="" id="btn_images">
+           </p>
+       </div>
+       <!--下面的文本-->
+       <div class="bottom-text">
+           <div class="imgTitle">
+               <img src="./images/icon_delete.png" alt="">
+               <span>确定删除当前选项？</span>
+           </div>
+           <div class="btnBack">
+               <button id="btn_delete">确认</button>
+               <button id="btn_back">取消</button>
+           </div>
+       </div>
+   </div>
+</body>
+<script src="./js/jquery-1.12.2.js"></script>
+<script src="./layui/layui.all.js"></script>
+<script src="./layui/layui.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/result-list.js"></script>
+<script>
+
+</script>
+</html>

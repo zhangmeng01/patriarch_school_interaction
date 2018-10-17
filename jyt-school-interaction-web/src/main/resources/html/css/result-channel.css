@@ -1,0 +1,482 @@
+.contentBox{
+    width: 100%;
+    padding: 29px 0 0 0px;
+    box-sizing: border-box;
+}
+.contentBox .title{
+    font-size: 18px;
+    color: #666666;
+    letter-spacing: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+/*导入文件*/
+.contentBox .article-box{
+    width: 100%;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+.contentBox .article-box span{
+    float: left;
+    height: 39px;
+    margin-top: 12px;
+}
+.contentBox .article-box span:nth-of-type(1){
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    margin-right: 10px;
+}
+.contentBox .article-box span:nth-of-type(2){
+    font-size: 14px;
+    color: #4D98E2;
+    line-height: 14px;
+    margin-right: 20px;
+}
+.contentBox .article-box span:nth-of-type(2):hover{
+    cursor: pointer;
+}
+.contentBox .article-box span:nth-of-type(3){
+    font-size: 12px;
+    color: #AEAEAE;
+    letter-spacing: 0;
+    line-height: 16px;
+}
+.contentBox .article-box .text-input{
+    float: left;
+    width: 430px;
+    height: 39px;
+    padding-left: 0.5%;
+    outline: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: 0;
+    margin-right: 20px;
+    background-color: #fff;
+}
+.contentBox .article-box p{
+    float: left;
+    width: 80px;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+    position: relative;
+    background: #4D98E2;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.contentBox .article-box p input{
+    position: absolute;
+    opacity: 0;
+    -moz-opacity: 0; /* 兼容老式浏览器 */
+    filter: alpha(opacity=0); /* 兼容IE */
+    top: 0;
+    right: 0;
+    font-size: 100px;
+    cursor: pointer;
+}
+.contentBox .article-box p input:hover{
+    cursor: pointer;
+}
+/*班级*/
+.contentBox .classRoom{
+    width: 100%;
+    padding-left: 112px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+.contentBox .classRoom span:nth-of-type(1){
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-right: 10px;
+}
+.contentBox .classRoom span:nth-of-type(2){
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+/*考试信息*/
+.contentBox .test-info{
+    width: 100%;
+    padding-left: 84px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+}
+.contentBox .test-info span{
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-right: 10px;
+}
+.contentBox .test-info select{
+    outline: none;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 0;
+    line-height: 14px;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+.contentBox .test-info select::-ms-expand{
+    display: none;
+}
+.contentBox .test-info select:nth-of-type(1){
+    width: 248px;
+    height: 39px;
+    margin-right: 20px;
+    background: #fff url("../images/icon_sanjiao.png") no-repeat 228px center;
+    background-size: 10px 5px;
+}
+.contentBox .test-info select:nth-of-type(2){
+    width: 163px;
+    height: 39px;
+    background: #fff url("../images/icon_sanjiao.png") no-repeat 143px center;
+    background-size: 10px 5px;
+}
+/*考试名称*/
+.contentBox .test-name{
+    width: 100%;
+    padding-left: 84px;
+    box-sizing: border-box;
+    margin-bottom: 11px;
+}
+.contentBox .test-name span{
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 14px;
+    margin-right: 10px;
+}
+.contentBox .test-name input{
+    width: 431px;
+    height: 39px;
+    line-height: 39px;
+    color: #999;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    outline: none;
+    padding-left: 0.5%;
+    box-sizing: border-box;
+}
+/*提示*/
+.contentBox .reminder{
+    width: 100%;
+    padding-left: 164px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #FB6041;
+    letter-spacing: 0;
+    line-height: 14px;
+    display: none;
+}
+.contentBox .reminder img{
+    width: 16px;
+    height: 16px;
+    margin-right: 0.3%;
+    vertical-align: bottom;
+}
+/*按钮栏*/
+.contentBox .btn-box{
+    width: 100%;
+    padding-left: 170px;
+    box-sizing: border-box;
+    margin-top: 49px;
+}
+.contentBox .btn-box button{
+    width: 80px;
+    height: 39px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 14px;
+    border-radius: 2px;
+    background-color: #F8F8F8;
+    color: #4D98E2;
+    border: 1px solid #ECF0F1;
+}
+.contentBox .btn-box input{
+    width: 80px;
+    height: 39px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 14px;
+    border-radius: 2px;
+    background-color: #4D98E2;
+    color: #fff;
+    margin-right: 20px;
+    border: 1px solid #4D98E2;
+}
+.contentBox .btn-box button:hover,.contentBox .btn-box input:hover{
+    cursor: pointer;
+}
+/*灰色遮罩层*/
+.gray_layersBox{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.30);
+    display: none;
+}
+/*成绩导入*/
+.result_layersBox{
+    position: absolute;
+    top: 6%;
+    left: 26%;
+    z-index: 10;
+    width: 601px;
+    height: 566px;
+    display: none;
+}
+.result_layersBox .top-title{
+    width: 100%;
+    height: 49px;
+}
+.result_layersBox .top-title p{
+    width: 100%;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    background-color: #4D98E2;
+}
+.result_layersBox .top-title p span{
+    float: left;
+    margin-left: 269px;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+.result_layersBox .top-title p img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    right: -106px;
+}
+.result_layersBox .top-title p img:hover{
+    cursor: pointer;
+}
+.result_layersBox .pictures-box{
+    width: 100%;
+    height: 517px;
+    background-color: #fff;
+    text-align: center;
+}
+.result_layersBox .pictures-box img{
+    width: 164px;
+    margin-bottom: 30px;
+    margin-top: 130px;
+}
+.result_layersBox .pictures-box p{
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+/*导入成功*/
+.suceess_layersBox{
+    position: absolute;
+    top: 6%;
+    left: 26%;
+    z-index: 10;
+    width: 601px;
+    height: 566px;
+    display: none;
+}
+.suceess_layersBox .top-title{
+    width: 100%;
+    height: 49px;
+}
+.suceess_layersBox .top-title p{
+    width: 100%;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    background-color: #4D98E2;
+}
+.suceess_layersBox .top-title p span{
+    float: left;
+    margin-left: 269px;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+.suceess_layersBox .top-title p img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    right: -106px;
+}
+.suceess_layersBox .top-title p img:hover{
+    cursor: pointer;
+}
+.suceess_layersBox .center-pictures{
+    width: 100%;
+    height: 517px;
+    background-color: #fff;
+    text-align: center;
+}
+.suceess_layersBox .center-pictures img{
+    width: 164px;
+    margin-bottom: 30px;
+    margin-top: 130px;
+}
+.suceess_layersBox .center-pictures p{
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+/*按钮*/
+.suceess_layersBox .center-pictures .btn-box{
+    width: 100%;
+    text-align: center;
+    margin-top: 119px;
+}
+.suceess_layersBox .center-pictures .btn-box button{
+    width: 80px;
+    height: 39px;
+    background: #4D98E2;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 14px;
+    border: none;
+    outline: none;
+}
+/*导入失败*/
+.error_layersBox{
+    position: absolute;
+    top: 6%;
+    left: 26%;
+    z-index: 10;
+    width: 601px;
+    height: 566px;
+    display: none;
+}
+.error_layersBox .top-title{
+    width: 100%;
+    height: 49px;
+}
+.error_layersBox .top-title p{
+    width: 100%;
+    height: 49px;
+    line-height: 49px;
+    text-align: center;
+    background-color: #4D98E2;
+}
+.error_layersBox .top-title p span{
+    float: left;
+    margin-left: 269px;
+    font-size: 16px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+.error_layersBox .top-title p img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    right: -106px;
+}
+.error_layersBox .top-title p img:hover{
+    cursor: pointer;
+}
+.error_layersBox .reminder-box{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background: rgba(251,96,65,0.20);
+}
+.error_layersBox .reminder-box img{
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+.error_layersBox .reminder-box span{
+    font-size: 14px;
+    color: #FB6041;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+.error_layersBox .maxBox{
+    width: 100%;
+    height: 526px;
+    background-color: #fff;
+}
+.error_layersBox .pictures-box {
+    width: 100%;
+    height: 490px;
+    background-color: #fff;
+    text-align: center;
+}
+.error_layersBox .pictures-box img{
+    width: 164px;
+    margin-bottom: 30px;
+    margin-top: 49px;
+}
+.error_layersBox .pictures-box p{
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-top: 10px;
+}
+.error_layersBox .pictures-box  #message_error{
+    width: 100%;
+    height: 76px;
+    overflow: auto;
+}
+.error_layersBox .pictures-box  #message_error li{
+    font-size: 14px;
+    color: #777E8C;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+.error_layersBox .pictures-box .btn-box{
+    width: 100%;
+    margin-top: 35px;
+    text-align: center;
+}
+.error_layersBox .pictures-box .btn-box button{
+    width: 132px;
+    height: 39px;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    color: #FFFFFF;
+    line-height: 14px;
+    border-radius: 2px;
+    background: #4D98E2;
+}
+.error_layersBox .pictures-box .btn-box button:hover{
+    cursor: pointer;
+}
+
+/*input获取焦点*/
+#result_contents:focus {
+    border-color: #66afe9;
+    outline: none;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(82,168,236,0.6);
+}

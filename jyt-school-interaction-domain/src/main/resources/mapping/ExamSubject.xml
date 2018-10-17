@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" > 
+<mapper namespace="com.yjtoon.school.mapper.IExamSubjectMapper" >
+  <resultMap id="BaseResultMap" type="com.yjtoon.school.domain.ExamSubject" >
+          <id column="es_id" property="esId" jdbcType="BIGINT" />
+            <result column="ex_id" property="exId" jdbcType="BIGINT" />
+            <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+            <result column="subject_sort" property="subjectSort" jdbcType="INTEGER" />
+            <result column="average_store" property="averageStore" jdbcType="DECIMAL" />
+            <result column="total_score" property="totalScore" jdbcType="DECIMAL" />
+            <result column="es_is_delete" property="esIsDelete" jdbcType="CHAR" />
+            <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+            <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+   
+  <sql id="baseColumns">
+         es_id
+         ,ex_id
+         ,subject_name
+         ,subject_sort
+         ,average_store
+         ,total_score
+         ,es_is_delete
+         ,create_time
+         ,update_time
+  </sql>
+  
+  <sql id="whereSql">
+        <if test="esId != null">
+         and es_id=#{esId}
+		</if> 
+        <if test="exId != null">
+         and ex_id=#{exId}
+		</if> 
+        <if test="subjectName != null and subjectName!='' ">
+         and subject_name=#{subjectName}
+		</if>
+        <if test="subjectSort != null">
+         and subject_sort=#{subjectSort}
+		</if> 
+        <if test="averageStore != null and averageStore!='' ">
+         and average_store=#{averageStore}
+		</if>
+        <if test="totalScore != null and totalScore!='' ">
+         and total_score=#{totalScore}
+		</if>
+        <if test="esIsDelete != null and esIsDelete!='' ">
+         and es_is_delete=#{esIsDelete}
+		</if>
+        <if test="createTime != null">
+         and create_time=#{createTime}
+		</if> 
+        <if test="updateTime != null">
+         and update_time=#{updateTime}
+		</if> 
+  </sql>
+  
+  	<select id="getById" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/>
+		from exam_subject  where es_id =#{esId}
+	</select>
+	
+	<select id="getByIds" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_subject  where es_id in
+	     <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>  
+	</select>
+	
+	<select id="get" resultMap="BaseResultMap" parameterType="com.yjtoon.school.domain.ExamSubject">
+		select <include refid="baseColumns"/>
+		from exam_subject  where 1=1 <include refid="whereSql"/> limit 1
+	</select>
+	
+	<select id="findAllList" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_subject
+	</select>
+	
+	<select id="findList"  parameterType="com.yjtoon.school.domain.ExamSubject" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_subject where 1=1 <include refid="whereSql"/>
+	      <if test="orderBy != null and orderBy!='' ">
+                order by ${orderBy}  
+            </if>
+	</select>
+
+	
+	 <select id="getCount"  parameterType="com.yjtoon.school.domain.ExamSubject" resultType="java.lang.Integer">
+         select count(1) from exam_subject where 1=1 <include refid="whereSql"/>
+      </select>
+
+    <select id="findEntityWrapper"  parameterType="com.yjtoon.framework.sqlplus.EntityWrapper" resultMap="BaseResultMap">
+	     select <include refid="baseColumns"/> from exam_subject where 1=1  ${ew.getSqlSegment()} 
+	</select>
+	
+      <insert id="insert" useGeneratedKeys="true" keyProperty="esId" parameterType="com.yjtoon.school.domain.ExamSubject">
+       insert into exam_subject 
+		<trim prefix="(" suffix=")" suffixOverrides=","> 
+		        <if test="esId != null">
+		          es_id,
+				</if> 
+		        <if test="exId != null">
+		          ex_id,
+				</if> 
+		        <if test="subjectName != null and subjectName!='' ">
+		         subject_name,
+				</if>
+		        <if test="subjectSort != null">
+		          subject_sort,
+				</if> 
+		        <if test="averageStore != null and averageStore!='' ">
+		         average_store,
+				</if>
+		        <if test="totalScore != null and totalScore!='' ">
+		         total_score,
+				</if>
+		        <if test="esIsDelete != null and esIsDelete!='' ">
+		         es_is_delete,
+				</if>
+		        <if test="createTime != null">
+		          create_time,
+				</if> 
+		        <if test="updateTime != null">
+		          update_time,
+				</if> 
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+		        <if test="esId != null">
+		         #{esId},
+				</if> 
+		        <if test="exId != null">
+		         #{exId},
+				</if> 
+		        <if test="subjectName != null and subjectName!='' ">
+		        #{subjectName},
+				</if>
+		        <if test="subjectSort != null">
+		         #{subjectSort},
+				</if> 
+		        <if test="averageStore != null and averageStore!='' ">
+		        #{averageStore},
+				</if>
+		        <if test="totalScore != null and totalScore!='' ">
+		        #{totalScore},
+				</if>
+		        <if test="esIsDelete != null and esIsDelete!='' ">
+		        #{esIsDelete},
+				</if>
+		        <if test="createTime != null">
+		         #{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		         #{updateTime},
+				</if> 
+		</trim>
+    </insert>
+    
+    <update id="updateById" parameterType="com.yjtoon.school.domain.ExamSubject">
+	    update exam_subject  set
+	     <trim suffixOverrides="," >
+		        <if test="exId != null">
+		        ex_id=#{exId},
+				</if> 
+		        <if test="subjectName != null and subjectName!='' ">
+		       subject_name=#{subjectName},
+				</if>
+		        <if test="subjectSort != null">
+		        subject_sort=#{subjectSort},
+				</if> 
+		        <if test="averageStore != null and averageStore!='' ">
+		       average_store=#{averageStore},
+				</if>
+		        <if test="totalScore != null and totalScore!='' ">
+		       total_score=#{totalScore},
+				</if>
+		        <if test="esIsDelete != null and esIsDelete!='' ">
+		       es_is_delete=#{esIsDelete},
+				</if>
+		        <if test="createTime != null">
+		        create_time=#{createTime},
+				</if> 
+		        <if test="updateTime != null">
+		        update_time=#{updateTime},
+				</if> 
+		  </trim>
+		 where es_id =#{esId}
+	</update>
+
+	 <update id="updateByIds">
+          update exam_subject  set
+	     <trim suffixOverrides="," >
+		        <if test="entity.exId != null">
+		        ex_id= #{entity.exId},
+				</if> 
+		        <if test="entity.subjectName != null and entity.subjectName != '' ">
+		        subject_name= #{entity.subjectName},
+				</if>
+		        <if test="entity.subjectSort != null">
+		        subject_sort= #{entity.subjectSort},
+				</if> 
+		        <if test="entity.averageStore != null and entity.averageStore != '' ">
+		        average_store= #{entity.averageStore},
+				</if>
+		        <if test="entity.totalScore != null and entity.totalScore != '' ">
+		        total_score= #{entity.totalScore},
+				</if>
+		        <if test="entity.esIsDelete != null and entity.esIsDelete != '' ">
+		        es_is_delete= #{entity.esIsDelete},
+				</if>
+		        <if test="entity.createTime != null">
+		        create_time= #{entity.createTime},
+				</if> 
+		        <if test="entity.updateTime != null">
+		        update_time= #{entity.updateTime},
+				</if> 
+		  </trim>
+		 where es_id in
+		  <foreach collection="ids" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+         </foreach>
+	</update>
+     
+	
+	<delete id="deleteById">
+        delete from exam_subject where es_id =#{esId}
+    </delete>
+    
+     <delete id="deleteByIds">
+        delete from exam_subject where es_id in 
+        <foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+               #{item}
+        </foreach>  
+	</delete>
+    
+    <delete id="delete" parameterType="com.yjtoon.school.domain.ExamSubject">
+        delete from exam_subject where 1=1 <include refid="whereSql"/> 
+    </delete>
+
+
+	<select id="findByIds" resultMap="BaseResultMap">
+		select <include refid="baseColumns"/> from exam_subject  where es_id in
+		<foreach collection="array" item="item" index="index"  open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+
+	<!--  根据EXID批量修改(删除这次考试对应的学科)-->
+	<update id="updateByExId" parameterType="com.yjtoon.school.domain.ExamSubject">
+		update exam_subject  set
+		<trim suffixOverrides="," >
+			<if test="subjectName != null and subjectName!='' ">
+				subject_name=#{subjectName},
+			</if>
+			<if test="subjectSort != null">
+				subject_sort=#{subjectSort},
+			</if>
+			<if test="averageStore != null and averageStore!='' ">
+				average_store=#{averageStore},
+			</if>
+			<if test="totalScore != null and totalScore!='' ">
+				total_score=#{totalScore},
+			</if>
+			<if test="esIsDelete != null and esIsDelete!='' ">
+				es_is_delete=#{esIsDelete},
+			</if>
+			<if test="createTime != null">
+				create_time=#{createTime},
+			</if>
+			<if test="updateTime != null">
+				update_time=#{updateTime},
+			</if>
+		</trim>
+		where ex_id=#{exId}
+	</update>
+	<select id="findTotalScore"  resultType="java.util.HashMap">
+		SELECT sum(total_score) as total_score,ex_id as ex_id	FROM  exam_subject where 1=1 and ex_id in
+		<foreach collection="exIdList" item="item" index="index"  open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		group by ex_id order by create_time desc limit 0,6
+	</select>
+</mapper>
